@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 public record DTORegistroDeTopico(
       String titulo,
       String mensaje,
-      LocalDateTime fechaCreacion,
+      LocalDateTime fecha,
       Status status,
       Long id_autor,
       String curso,

@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/topicos")
-public class TopicsController {
+public class TopicosController {
 
   @Autowired
   private RepositoryTopic repositoryTopic;
 
   @PostMapping
-  public void ingresarTopic(@RequestBody DTORegistroDeTopico datosIngresoTopic) {
-    repositoryTopic.save(new Topico(datosIngresoTopic));
+  public void ingresarTopico(@RequestBody DTORegistroDeTopico datosRegistroDeTopico) {
+    repositoryTopic.save(new Topico(datosRegistroDeTopico));
 
   }
 

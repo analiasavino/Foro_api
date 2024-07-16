@@ -3,7 +3,7 @@ CREATE TABLE topicos(
     titulo VARCHAR(255) NOT NULL,
     mensaje TEXT,
     fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
-    status ENUM('ABIERTO', 'RESUELTO', 'CERRADO') NOT NULL,
+    status VARCHAR(255) NOT NULL,
     author_id BIGINT,
     curso VARCHAR(255) NOT NULL
     );

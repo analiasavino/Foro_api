@@ -21,23 +21,22 @@ public class Topico {
   private Long id;
   private String titulo;
   private String mensaje;
-  private LocalDateTime fechaCreacion;
+  private LocalDateTime fecha;
   @Enumerated(EnumType.STRING)
   private Status status;
   @ManyToOne
+  @JoinColumn(name = "author_id")
   private Usuario autor;
   private String curso;
-  private String respuesta;
+
 
   public Topico(DTORegistroDeTopico dtoRegistroDeTopico){
     this.titulo = dtoRegistroDeTopico.titulo();
     this.mensaje = dtoRegistroDeTopico.mensaje();
-    this.fechaCreacion = dtoRegistroDeTopico.fechaCreacion();
+    this.fecha = dtoRegistroDeTopico.fecha();
     this.status = dtoRegistroDeTopico.status();
     this.autor = new Usuario(dtoRegistroDeTopico.id_autor());
     this.curso = dtoRegistroDeTopico.curso();
-    this.respuesta = dtoRegistroDeTopico.respuesta();
-
 
 
   }
