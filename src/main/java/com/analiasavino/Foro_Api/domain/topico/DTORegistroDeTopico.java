@@ -1,15 +1,21 @@
 package com.analiasavino.Foro_Api.domain.topico;
-
-import com.analiasavino.Foro_Api.domain.usuario.Usuario;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 import java.time.LocalDateTime;
 
 public record DTORegistroDeTopico(
+      @NotBlank
       String titulo,
+      @NotBlank
       String mensaje,
-      LocalDateTime fechaCreacion,
+      @NotNull
+      LocalDateTime fecha,
+      @NotNull
       Status status,
-      Long id_autor,
-      String curso,
-      String respuesta) {
+      @NotBlank
+      String autor,
+      @NotBlank
+      String curso
+      ){
 }

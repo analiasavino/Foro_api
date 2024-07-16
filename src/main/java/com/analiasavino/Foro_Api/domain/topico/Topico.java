@@ -1,6 +1,5 @@
 package com.analiasavino.Foro_Api.domain.topico;
 
-import com.analiasavino.Foro_Api.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -21,24 +20,35 @@ public class Topico {
   private Long id;
   private String titulo;
   private String mensaje;
-  private LocalDateTime fechaCreacion;
+  private LocalDateTime fecha;
   @Enumerated(EnumType.STRING)
   private Status status;
-  @ManyToOne
-  private Usuario autor;
+  private String autor;
   private String curso;
-  private String respuesta;
 
-  public Topico(DTORegistroDeTopico dtoRegistroDeTopico){
+
+  public Topico(DTORegistroDeTopico dtoRegistroDeTopico) {
     this.titulo = dtoRegistroDeTopico.titulo();
     this.mensaje = dtoRegistroDeTopico.mensaje();
-    this.fechaCreacion = dtoRegistroDeTopico.fechaCreacion();
+    this.fecha = dtoRegistroDeTopico.fecha();
     this.status = dtoRegistroDeTopico.status();
-    this.autor = new Usuario(dtoRegistroDeTopico.id_autor());
+    this.autor = dtoRegistroDeTopico.autor();
     this.curso = dtoRegistroDeTopico.curso();
-    this.respuesta = dtoRegistroDeTopico.respuesta();
 
+  }
 
-
+  public void actualizarTopico(DTOActualizacionDeTopico dtoActualizacionDeTopico) {
+    if (dtoActualizacionDeTopico.titulo() != null) {
+      this.titulo = dtoActualizacionDeTopico.titulo();
+    }
+    if (dtoActualizacionDeTopico.mensaje() != null) {
+      this.mensaje = dtoActualizacionDeTopico.mensaje();
+    }
+    if (dtoActualizacionDeTopico.status() != null) {
+      this.status = Status.valueOf(dtoActualizacionDeTopico.status());
+    }
+    if (dtoActualizacionDeTopico.curso() != null) {
+      this.curso = dtoActualizacionDeTopico.curso();
+    }
   }
 }
