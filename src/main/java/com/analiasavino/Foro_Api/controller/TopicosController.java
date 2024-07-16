@@ -1,9 +1,7 @@
 package com.analiasavino.Foro_Api.controller;
 
-import com.analiasavino.Foro_Api.domain.topico.DTOListadoTopicos;
-import com.analiasavino.Foro_Api.domain.topico.DTORegistroDeTopico;
-import com.analiasavino.Foro_Api.domain.topico.RepositoryTopic;
-import com.analiasavino.Foro_Api.domain.topico.Topico;
+import com.analiasavino.Foro_Api.domain.topico.*;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -28,5 +26,19 @@ public class TopicosController {
   @GetMapping
   public Page<DTOListadoTopicos> listadoTopicos(@PageableDefault(sort = {"curso"}) Pageable paginacion){
     return repositoryTopic.findAll(paginacion).map(DTOListadoTopicos::new);
+  }
+  @PutMapping()
+  @Transactional
+  public void actualizarTopico(@RequestBody @Valid DTOActualizacionDeTopico dtoActualizacionDeTopico){
+    Topico topico = repositoryTopic.getReferenceById(dtoActualizacionDeTopico.id());
+    topico.actualizarTopico(dtoActualizacionDeTopico);
+  }
+
+  @DeleteMapping("/{id}")
+  @Transactional
+  public void eliminarTopico(@PathVariable Long id){
+    Topico topico = repositoryTopic.getReferenceById(id);
+    repositoryTopic.delete(topico);
+
   }
 }

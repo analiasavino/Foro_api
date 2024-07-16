@@ -27,7 +27,7 @@ public class Topico {
   private String curso;
 
 
-  public Topico(DTORegistroDeTopico dtoRegistroDeTopico){
+  public Topico(DTORegistroDeTopico dtoRegistroDeTopico) {
     this.titulo = dtoRegistroDeTopico.titulo();
     this.mensaje = dtoRegistroDeTopico.mensaje();
     this.fecha = dtoRegistroDeTopico.fecha();
@@ -35,5 +35,20 @@ public class Topico {
     this.autor = dtoRegistroDeTopico.autor();
     this.curso = dtoRegistroDeTopico.curso();
 
+  }
+
+  public void actualizarTopico(DTOActualizacionDeTopico dtoActualizacionDeTopico) {
+    if (dtoActualizacionDeTopico.titulo() != null) {
+      this.titulo = dtoActualizacionDeTopico.titulo();
+    }
+    if (dtoActualizacionDeTopico.mensaje() != null) {
+      this.mensaje = dtoActualizacionDeTopico.mensaje();
+    }
+    if (dtoActualizacionDeTopico.status() != null) {
+      this.status = Status.valueOf(dtoActualizacionDeTopico.status());
+    }
+    if (dtoActualizacionDeTopico.curso() != null) {
+      this.curso = dtoActualizacionDeTopico.curso();
+    }
   }
 }
