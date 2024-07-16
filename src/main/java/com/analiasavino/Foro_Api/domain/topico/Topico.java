@@ -1,6 +1,5 @@
 package com.analiasavino.Foro_Api.domain.topico;
 
-import com.analiasavino.Foro_Api.domain.usuario.Usuario;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -24,9 +23,7 @@ public class Topico {
   private LocalDateTime fecha;
   @Enumerated(EnumType.STRING)
   private Status status;
-  @ManyToOne
-  @JoinColumn(name = "author_id")
-  private Usuario autor;
+  private String autor;
   private String curso;
 
 
@@ -35,9 +32,8 @@ public class Topico {
     this.mensaje = dtoRegistroDeTopico.mensaje();
     this.fecha = dtoRegistroDeTopico.fecha();
     this.status = dtoRegistroDeTopico.status();
-    this.autor = new Usuario(dtoRegistroDeTopico.id_autor());
+    this.autor = dtoRegistroDeTopico.autor();
     this.curso = dtoRegistroDeTopico.curso();
-
 
   }
 }
